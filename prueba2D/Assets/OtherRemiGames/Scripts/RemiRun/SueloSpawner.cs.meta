@@ -1,0 +1,14 @@
+fileFormatVersion: 2
+guid: 8a33ac12fb03f6849b2114a2246bf605
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - suelo: {instanceID: 0}
+  - nube: {instanceID: 0}
+  - sueloRef: {instanceID: 0}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
