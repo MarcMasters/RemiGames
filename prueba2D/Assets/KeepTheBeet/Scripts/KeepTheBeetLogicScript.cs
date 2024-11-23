@@ -26,6 +26,18 @@ public class KeepTheBeetLogicScript : MonoBehaviour
         }
     }
 
+    public bool checkScoreChanges()
+    {
+        if (playerScore > prevScore)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
+    }
+
     public void addScore()
     {
         playerScore++;
@@ -54,17 +66,5 @@ public class KeepTheBeetLogicScript : MonoBehaviour
     {
         gameOverScreen.SetActive(true);
         rotation.remiIsAlive = false;
-    }
-
-    public bool checkScoreChanges()
-    {
-        if (playerScore > prevScore)
-        {
-            return true;
-        }
-        else
-        {
-            return false;
-        }
     }
 }

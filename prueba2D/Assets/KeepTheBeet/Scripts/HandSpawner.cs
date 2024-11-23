@@ -54,22 +54,11 @@ public class HandSpawner : MonoBehaviour
 
             spawnHand(x,y);
             prev_x = x; prev_y = y;
+
+            // Espera cooldown y destruye hand anterior
+
         }
     }
-
-    //private void spawnHand(float x, float y)
-    //{
-    //    Vector3 spawnPos = new Vector3(x, y, 0);
-
-    //    // Vector de dirección hacia el centro (el origen)
-    //    Vector3 relativePos = spawnPos - transform.position;
-
-    //    // Calcular la rotación hacia el centro
-    //    Quaternion handRotation = Quaternion.LookRotation(relativePos, Vector3.up);
-
-    //    Instantiate(hand, spawnPos, handRotation, parent);
-    //    //Debug.Log($"Spawned hand at x: {x}, y: {y}, rotation: {handRotation.eulerAngles}");
-    //}
 
     private void spawnHand(float x, float y)
     {
@@ -84,45 +73,4 @@ public class HandSpawner : MonoBehaviour
         Instantiate(hand, spawnPos, handRotation, parent);
         //Debug.Log($"Spawned hand at x: {x}, y: {y}, rotation: {handRotation.eulerAngles}");
     }
-
-    //private void spawnHand(float x, float y, float spawnAngle)
-    //{
-    //    // Cálculo de compensación de ángulo para 'hand' a partir de 'spawnAngle'
-    //    // Quaternion.Euler(0,0,X) gira el GameObject X grados a la izquierda
-    //    Quaternion handRotation = Quaternion.identity;
-    //    float alfa = spawnAngle*180/Mathf.PI;
-    //    Debug.Log("x:" + x + " y:" + y + " ang:" + alfa);
-
-    //    if (alfa < 90 && alfa >= 0f)
-    //    {
-    //        //1r cuadrante
-    //        handRotation = Quaternion.Euler(0f, 0f, 180-(90-alfa));
-    //        Debug.Log("1: " + alfa);
-    //    }
-    //    else if (alfa < 180 && alfa >= 90)
-    //    {
-    //        //2º cuadrante
-    //        handRotation = Quaternion.Euler(0f, 0f, -(180-(90-(180-alfa))));
-    //        Debug.Log("2: " + alfa);
-    //    }
-    //    else if (alfa < 270 && alfa >= 180)
-    //    {
-    //        //3r cuadrante
-    //        handRotation = Quaternion.Euler(0f, 0f, -(180-(90-(270-alfa))));
-    //        Debug.Log("3: " + alfa);
-    //    }
-    //    else if (alfa < 360f && alfa >= 270)
-    //    {
-    //        //4º cuadrante
-    //        handRotation = Quaternion.Euler(0f, 0f, 180-(90-(360-alfa)));
-    //        Debug.Log("4: " + alfa);
-    //    }
-    //    else
-    //    {
-    //        Debug.LogError("Error encontrando cuadrante. Ángulo: " + alfa);
-    //    }
-
-    //    Instantiate(hand, new Vector3(x, y, 0), handRotation);
-    //    //Debug.Log("Mano generada");
-    //}
 }

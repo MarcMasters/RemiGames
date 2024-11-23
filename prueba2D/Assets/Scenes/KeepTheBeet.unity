@@ -1111,7 +1111,7 @@ GameObject:
   - component: {fileID: 954462364}
   m_Layer: 0
   m_Name: HandSpawner
-  m_TagString: Untagged
+  m_TagString: HandSpawner
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1145,10 +1145,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hand: {fileID: 7583299257953821524, guid: 51d78472d3193f04584a49f85f76069f, type: 3}
   parent: {fileID: 1092429276}
-  target: {fileID: 0}
   radio: 4
   proximitySpawnFactor: 3
   logic: {fileID: 0}
+  canDestroyHand: 0
 --- !u!1 &966619183
 GameObject:
   m_ObjectHideFlags: 0
@@ -2201,7 +2201,7 @@ Transform:
   m_GameObject: {fileID: 1773886728}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0.05495557, w: 0.99848884}
-  m_LocalPosition: {x: 0.89452463, y: -0.42553973, z: 0.12539272}
+  m_LocalPosition: {x: 0.72, y: -0.41, z: 0.12539272}
   m_LocalScale: {x: 1.3396813, y: 1.3396813, z: 1.3396811}
   m_ConstrainProportionsScale: 0
   m_Children: []

@@ -11,7 +11,7 @@ public class HandScript : MonoBehaviour
     [SerializeField] private float highestRS = 250f;
     Animator anim;
     private float timer = 0f;
-    private float animCoolDown = .1f;
+    [SerializeField] private float animCoolDown = .5f;
 
     void Start()
     {
@@ -27,7 +27,6 @@ public class HandScript : MonoBehaviour
             if (canPressSpace)
             {
                 // Esto pasa cuando se acierta y ganas 1 punto
-                anim.SetBool("remiCaught",true);
                 if (rotation.clockwise == true)
                 {
                     rotation.clockwise = false;
@@ -37,18 +36,12 @@ public class HandScript : MonoBehaviour
                     rotation.clockwise = true;
                 }
 
-                logic.addScore();
-                rotation.rotationSpeed = Random.Range(lowestRS, highestRS);
-                //Debug.Log(rotation.rotationSpeed);
-                Destroy(gameObject);
-                //if (timer < animCoolDown)
-                //{
-                //    timer += Time.deltaTime;
-                //}
-                //else
-                //{
-                //    Destroy(gameObject);
-                //}                
+                logic.addScore();                                               // +1 a score en 'logic'
+                anim.SetBool("remiCaught", true);                               // Animacion de remiCaught
+                rotation.rotationSpeed = Random.Range(lowestRS, highestRS);     // Velocidad de rotacion en 'rotation' random
+                GetComponent<CircleCollider2D>().enabled = false;               // Se desactiva el collider de 'hand'
+                
+                Destroy(gameObject, 0.5f);
             }
             else
             {

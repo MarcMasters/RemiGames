@@ -101,7 +101,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lowestRS: 100
   highestRS: 250
-  animCoolDown: 0.5
+  animCoolDown: 1
 --- !u!95 &6897156022997280139
 Animator:
   serializedVersion: 5

@@ -9,6 +9,7 @@ TagManager:
   - Muerte
   - Mano
   - Orbita
+  - HandSpawner
   layers:
   - Default
   - TransparentFX
