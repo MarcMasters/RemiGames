@@ -32,35 +32,42 @@ public class HandScript : MonoBehaviour
         //    print("distancia actualizada");
         //}
 
-        if (Input.GetKeyDown(KeyCode.Space) && rotation.remiIsAlive) //&& distancePlayerHand < 1f)
+        // Si la mano activa (en trigger) no es la de este script > return (no hace nada)
+        if (logic.activeHand != this) return;
+
+        if (Input.GetKeyDown(KeyCode.Space) && rotation.remiIsAlive && logic.canPressSpace) //&& distancePlayerHand < 1f)
         {
             //print("Distancia player-hand: " + distancePlayerHand);
             //Debug.Log("bool en espacio: "+canPressSpace);
-            if (logic.canPressSpace)
-            {
-                // Esto pasa cuando se acierta y ganas 1 punto
-                if (rotation.clockwise == true)
-                {
-                    rotation.clockwise = false;
-                }
-                else
-                {
-                    rotation.clockwise = true;
-                }
+            //if (logic.canPressSpace)
+            //{
 
-                logic.addScore();                                               // +1 a score en 'logic'
-                anim.SetBool("remiCaught", true);                               // Animacion de remiCaught
-                rotation.rotationSpeed = Random.Range(lowestRS, highestRS);     // Velocidad de rotacion en 'rotation' random
-                GetComponent<CircleCollider2D>().enabled = false;               // Se desactiva el collider de 'hand'
-                
-                Destroy(gameObject, 0.5f);
+            // Esto pasa cuando se acierta y ganas 1 punto
+            if (rotation.clockwise == true)
+            {
+                rotation.clockwise = false;
             }
             else
             {
-                // Si se falla, pierdes
-                //anim.SetBool("remiCaught", false);
-                logic.gameOver();
+                rotation.clockwise = true;
             }
+
+            logic.addScore();                                               // +1 a score en 'logic'
+            anim.SetBool("remiCaught", true);                               // Animacion de remiCaught
+            rotation.rotationSpeed = Random.Range(lowestRS, highestRS);     // Velocidad de rotacion en 'rotation' random
+            GetComponent<CircleCollider2D>().enabled = false;               // Se desactiva el collider de 'hand'
+                
+            Destroy(gameObject, 0.3f);
+
+            //}
+
+            // Se gestiona en "logic" >>>
+            //else
+            //{
+            //    // Si se falla, pierdes
+            //    //anim.SetBool("remiCaught", false);
+            //    logic.gameOver();
+            //}
         }
     }
 }

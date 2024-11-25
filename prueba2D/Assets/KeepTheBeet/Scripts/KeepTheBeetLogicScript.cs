@@ -14,6 +14,7 @@ public class KeepTheBeetLogicScript : MonoBehaviour
     private int prevScore = 0;
 
     public bool canPressSpace;
+    public HandScript activeHand;
 
     void Start()
     {
@@ -25,6 +26,11 @@ public class KeepTheBeetLogicScript : MonoBehaviour
         if (checkScoreChanges())
         {
             prevScore = playerScore;
+        }
+
+        if (Input.GetKeyDown(KeyCode.Space) && !canPressSpace)
+        {
+            gameOver();
         }
     }
 

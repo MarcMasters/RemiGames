@@ -19,6 +19,8 @@ public class KeepTheBeetRemiScript : MonoBehaviour
         {
             //Debug.Log("trigger enter");
             logic.canPressSpace = true;
+            // Vincular como mano activa "esta" (la que hace trigger)
+            logic.activeHand = other.GetComponent<HandScript>();
         }
     }
 
@@ -30,6 +32,12 @@ public class KeepTheBeetRemiScript : MonoBehaviour
         {
             //Debug.Log("trigger exit y bool false");
             logic.canPressSpace = false;
+
+            // Desvincular al salir del trigger
+            if (logic.activeHand == other.GetComponent<HandScript>())
+            {
+                logic.activeHand = null;
+            }
 
             if (!logic.checkScoreChanges())
             {
