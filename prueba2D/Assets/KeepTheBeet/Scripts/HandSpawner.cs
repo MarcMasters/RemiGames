@@ -7,14 +7,15 @@ public class HandSpawner : MonoBehaviour
 {
     [SerializeField] private GameObject hand;
     [SerializeField] private Transform parent;
-    [SerializeField] private Transform target;
-
+    
     [SerializeField] private float radio;
     [SerializeField] private float proximitySpawnFactor;
     private float prev_x, prev_y, x, y, spawnAngle;
 
     [SerializeField] private KeepTheBeetLogicScript logic;
-    private int prevScore = 0;
+    public float distancePlayerHand;
+    private Transform playerTransform;
+    private GameObject newHand;
 
     void Start()
     {
@@ -26,7 +27,9 @@ public class HandSpawner : MonoBehaviour
 
         // Hand no hará el 1r spawn en el hemisferio norte
         y = -Mathf.Abs(y);
-        
+
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
+
         // Primera hand
         spawnHand(x, y);
 
@@ -51,12 +54,16 @@ public class HandSpawner : MonoBehaviour
                 //Debug.Log("Nuevas coords:" + x + " / " + y);
             }
             while (distance < proximitySpawnFactor);
+            
+            // Antes de generar otra, newHand es la anterior
+            //if (newHand != null)
+            //{
+            //    distancePlayerHand = GetDistanceToPlayer(playerTransform, newHand.transform);
+            //    print("Distancia player-hand: " + distancePlayerHand);
+            //}
 
-            spawnHand(x,y);
+            spawnHand(x, y);
             prev_x = x; prev_y = y;
-
-            // Espera cooldown y destruye hand anterior
-
         }
     }
 
@@ -70,7 +77,12 @@ public class HandSpawner : MonoBehaviour
         // Calcular la rotación hacia el centro
         Quaternion handRotation = Quaternion.LookRotation(Vector3.forward, directionToCenter);
 
-        Instantiate(hand, spawnPos, handRotation, parent);
+        newHand = Instantiate(hand, spawnPos, handRotation, parent);
         //Debug.Log($"Spawned hand at x: {x}, y: {y}, rotation: {handRotation.eulerAngles}");
+    }
+
+    public float GetDistanceToPlayer()
+    {
+        return Vector2.Distance(newHand.transform.position, playerTransform.position);
     }
 }

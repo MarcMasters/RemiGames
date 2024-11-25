@@ -13,6 +13,8 @@ public class KeepTheBeetLogicScript : MonoBehaviour
     [SerializeField] private RotationScript rotation;
     private int prevScore = 0;
 
+    public bool canPressSpace;
+
     void Start()
     {
         rotation = GameObject.FindGameObjectWithTag("Orbita").GetComponent<RotationScript>();

@@ -4,27 +4,39 @@ using UnityEngine;
 
 public class HandScript : MonoBehaviour
 {
-    private bool canPressSpace = false;
     private RotationScript rotation;
     private KeepTheBeetLogicScript logic;
+    private HandSpawner spawner;
+
     [SerializeField] private float lowestRS = 100f;
     [SerializeField] private float highestRS = 250f;
+    
     Animator anim;
-    private float timer = 0f;
-    [SerializeField] private float animCoolDown = .5f;
+    //private float timer = 0f;
+    //[SerializeField] private float animCoolDown = .5f;
+    //private float distancePlayerHand;
 
     void Start()
     {
         rotation = GameObject.FindGameObjectWithTag("Orbita").GetComponent<RotationScript>();
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<KeepTheBeetLogicScript>();
+        //spawner = GameObject.FindGameObjectWithTag("HandSpawner").GetComponent<HandSpawner>();
         anim = GetComponent<Animator>();
     }
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && rotation.remiIsAlive)
+        //if (Input.GetKeyDown(KeyCode.Space) && logic.canPressSpace)
+        //{
+        //    distancePlayerHand = spawner.GetDistanceToPlayer();
+        //    print("distancia actualizada");
+        //}
+
+        if (Input.GetKeyDown(KeyCode.Space) && rotation.remiIsAlive) //&& distancePlayerHand < 1f)
         {
-            if (canPressSpace)
+            //print("Distancia player-hand: " + distancePlayerHand);
+            //Debug.Log("bool en espacio: "+canPressSpace);
+            if (logic.canPressSpace)
             {
                 // Esto pasa cuando se acierta y ganas 1 punto
                 if (rotation.clockwise == true)
@@ -47,41 +59,6 @@ public class HandScript : MonoBehaviour
             {
                 // Si se falla, pierdes
                 //anim.SetBool("remiCaught", false);
-                logic.gameOver();
-                //if (timer < animCoolDown)
-                //{
-                //    timer += Time.deltaTime;
-                //}
-                //else
-                //{
-                //    logic.gameOver();
-                //}
-            }
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        // Se puede pulsar espacio al entrar al trigger
-        //Debug.Log("trigger enter");
-        if (collision.CompareTag("Player"))
-        {
-            //Debug.Log("bool en true");
-            canPressSpace = true;
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        // Al salir del trigger ya no se puede pulsar espacio
-        // y pierdes si no has acertado \ sumado 1 punto
-        if (collision.CompareTag("Player"))
-        {
-            //Debug.Log("trigger exit");
-            canPressSpace = false;
-
-            if (!logic.checkScoreChanges())
-            {
                 logic.gameOver();
             }
         }

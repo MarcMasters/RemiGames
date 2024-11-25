@@ -99,6 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ef6678d8cf33c5447abae90ba604c6fb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  canPressSpace: 0
   lowestRS: 100
   highestRS: 250
   animCoolDown: 1
