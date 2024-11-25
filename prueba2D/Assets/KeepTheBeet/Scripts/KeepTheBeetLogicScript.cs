@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using System.Threading;
 
 public class KeepTheBeetLogicScript : MonoBehaviour
 {
@@ -15,6 +16,10 @@ public class KeepTheBeetLogicScript : MonoBehaviour
 
     public bool canPressSpace;
     public HandScript activeHand;
+
+    private float timer = 0f;
+    public bool missClick = false;
+    [SerializeField] private float animCoolDown = .5f;
 
     void Start()
     {
@@ -30,7 +35,18 @@ public class KeepTheBeetLogicScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && !canPressSpace)
         {
-            gameOver();
+            // Animacion + cooldown para gameOver
+            missClick = true;
+            //if (timer < animCoolDown)
+            //{
+            //    timer += Time.deltaTime;
+            //}
+            //else
+            //{
+            //    timer = 0f;                
+            //    gameOver();
+            //    missClick = false;
+            //}
         }
     }
 

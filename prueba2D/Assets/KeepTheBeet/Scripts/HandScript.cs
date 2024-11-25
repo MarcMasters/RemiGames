@@ -12,8 +12,6 @@ public class HandScript : MonoBehaviour
     [SerializeField] private float highestRS = 250f;
     
     Animator anim;
-    //private float timer = 0f;
-    //[SerializeField] private float animCoolDown = .5f;
     //private float distancePlayerHand;
 
     void Start()
@@ -26,22 +24,13 @@ public class HandScript : MonoBehaviour
 
     void Update()
     {
-        //if (Input.GetKeyDown(KeyCode.Space) && logic.canPressSpace)
-        //{
-        //    distancePlayerHand = spawner.GetDistanceToPlayer();
-        //    print("distancia actualizada");
-        //}
+        if (logic.missClick) anim.SetBool("missClick", true);
 
         // Si la mano activa (en trigger) no es la de este script > return (no hace nada)
         if (logic.activeHand != this) return;
 
-        if (Input.GetKeyDown(KeyCode.Space) && rotation.remiIsAlive && logic.canPressSpace) //&& distancePlayerHand < 1f)
+        if (Input.GetKeyDown(KeyCode.Space) && rotation.remiIsAlive && logic.canPressSpace && !logic.missClick)
         {
-            //print("Distancia player-hand: " + distancePlayerHand);
-            //Debug.Log("bool en espacio: "+canPressSpace);
-            //if (logic.canPressSpace)
-            //{
-
             // Esto pasa cuando se acierta y ganas 1 punto
             if (rotation.clockwise == true)
             {
@@ -58,16 +47,6 @@ public class HandScript : MonoBehaviour
             GetComponent<CircleCollider2D>().enabled = false;               // Se desactiva el collider de 'hand'
                 
             Destroy(gameObject, 0.3f);
-
-            //}
-
-            // Se gestiona en "logic" >>>
-            //else
-            //{
-            //    // Si se falla, pierdes
-            //    //anim.SetBool("remiCaught", false);
-            //    logic.gameOver();
-            //}
         }
     }
 }
