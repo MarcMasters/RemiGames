@@ -12,7 +12,7 @@ public class HandSpawner : MonoBehaviour
     [SerializeField] private float proximitySpawnFactor;
     private float prev_x, prev_y, x, y, spawnAngle;
 
-    [SerializeField] private KeepTheBeetLogicScript logic;
+    [SerializeField] private KTBLogicScript logic;
     public float distancePlayerHand;
     private Transform playerTransform;
     private GameObject newHand;
@@ -33,7 +33,7 @@ public class HandSpawner : MonoBehaviour
         // Primera hand
         spawnHand(x, y);
 
-        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<KeepTheBeetLogicScript>();
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<KTBLogicScript>();
     }
     
     void Update()
@@ -54,13 +54,6 @@ public class HandSpawner : MonoBehaviour
                 //Debug.Log("Nuevas coords:" + x + " / " + y);
             }
             while (distance < proximitySpawnFactor);
-            
-            // Antes de generar otra, newHand es la anterior
-            //if (newHand != null)
-            //{
-            //    distancePlayerHand = GetDistanceToPlayer(playerTransform, newHand.transform);
-            //    print("Distancia player-hand: " + distancePlayerHand);
-            //}
 
             spawnHand(x, y);
             prev_x = x; prev_y = y;
@@ -81,8 +74,8 @@ public class HandSpawner : MonoBehaviour
         //Debug.Log($"Spawned hand at x: {x}, y: {y}, rotation: {handRotation.eulerAngles}");
     }
 
-    public float GetDistanceToPlayer()
-    {
-        return Vector2.Distance(newHand.transform.position, playerTransform.position);
-    }
+    //public float GetDistanceToPlayer()
+    //{
+    //    return Vector2.Distance(newHand.transform.position, playerTransform.position);
+    //}
 }

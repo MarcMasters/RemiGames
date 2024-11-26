@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Threading;
 
-public class KeepTheBeetLogicScript : MonoBehaviour
+public class KTBLogicScript : MonoBehaviour
 {
     public int playerScore = 0;
     [SerializeField] private Text scoreText;
@@ -16,14 +15,13 @@ public class KeepTheBeetLogicScript : MonoBehaviour
 
     public bool canPressSpace;
     public HandScript activeHand;
-
-    private float timer = 0f;
     public bool missClick = false;
-    [SerializeField] private float animCoolDown = .5f;
 
     void Start()
     {
         rotation = GameObject.FindGameObjectWithTag("Orbita").GetComponent<RotationScript>();
+        scoreText.text = playerScore.ToString();
+        rotation.remiIsAlive = true;
     }
 
     void Update()
@@ -37,16 +35,6 @@ public class KeepTheBeetLogicScript : MonoBehaviour
         {
             // Animacion + cooldown para gameOver
             missClick = true;
-            //if (timer < animCoolDown)
-            //{
-            //    timer += Time.deltaTime;
-            //}
-            //else
-            //{
-            //    timer = 0f;                
-            //    gameOver();
-            //    missClick = false;
-            //}
         }
     }
 
@@ -68,27 +56,19 @@ public class KeepTheBeetLogicScript : MonoBehaviour
         scoreText.text = playerScore.ToString();
     }
 
-    public void onPlay()
-    {
-        scoreText.text = playerScore.ToString();
-        titleScreen.SetActive(false);
-        gameOverScreen.SetActive(false);
-        rotation.remiIsAlive = true;
-    }
-
     public void onRestart()
     {
-        SceneManager.LoadScene("KeepTheBeet");
-    }
-
-    public void onExitGame()
-    {
-        SceneManager.LoadScene("TitleScreen");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void gameOver()
     {
         gameOverScreen.SetActive(true);
         rotation.remiIsAlive = false;
+    }
+
+    public void onExit()
+    {
+        SceneManager.LoadScene("KTBTitleScreen");
     }
 }

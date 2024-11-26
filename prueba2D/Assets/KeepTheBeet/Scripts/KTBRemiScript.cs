@@ -2,14 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class KeepTheBeetRemiScript : MonoBehaviour
+public class KTBtRemiScript : MonoBehaviour
 {
-    private KeepTheBeetLogicScript logic;
+    private KTBLogicScript logic;
     private HandScript handScript;
-
+    Animator anim;
+    
     private void Start()
     {
-        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<KeepTheBeetLogicScript>();
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<KTBLogicScript>();
+        anim = GetComponent<Animator>();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -32,6 +34,7 @@ public class KeepTheBeetRemiScript : MonoBehaviour
         {
             //Debug.Log("trigger exit y bool false");
             logic.canPressSpace = false;
+            anim.SetBool("remiSpawning",true);
 
             // Desvincular al salir del trigger
             if (logic.activeHand == other.GetComponent<HandScript>())
@@ -44,5 +47,10 @@ public class KeepTheBeetRemiScript : MonoBehaviour
                 logic.gameOver();
             }
         }
+    }
+
+    public void resetBool()
+    {
+        anim.SetBool("remiSpawning", false);
     }
 }

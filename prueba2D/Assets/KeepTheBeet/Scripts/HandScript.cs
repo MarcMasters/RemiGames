@@ -5,7 +5,7 @@ using UnityEngine;
 public class HandScript : MonoBehaviour
 {
     private RotationScript rotation;
-    private KeepTheBeetLogicScript logic;
+    private KTBLogicScript logic;
     private HandSpawner spawner;
 
     [SerializeField] private float lowestRS = 100f;
@@ -17,7 +17,7 @@ public class HandScript : MonoBehaviour
     void Start()
     {
         rotation = GameObject.FindGameObjectWithTag("Orbita").GetComponent<RotationScript>();
-        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<KeepTheBeetLogicScript>();
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<KTBLogicScript>();
         //spawner = GameObject.FindGameObjectWithTag("HandSpawner").GetComponent<HandSpawner>();
         anim = GetComponent<Animator>();
     }
