@@ -29,7 +29,7 @@ public class HandScript : MonoBehaviour
         // Si la mano activa (en trigger) no es la de este script > return (no hace nada)
         if (logic.activeHand != this) return;
 
-        if (Input.GetKeyDown(KeyCode.Space) && rotation.remiIsAlive && logic.canPressSpace && !logic.missClick)
+        if (Input.GetKeyDown(KeyCode.Space) && logic.remiIsAlive && logic.canPressSpace && !logic.missClick)
         {
             // Esto pasa cuando se acierta y ganas 1 punto
             if (rotation.clockwise == true)

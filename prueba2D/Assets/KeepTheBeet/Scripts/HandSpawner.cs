@@ -14,26 +14,23 @@ public class HandSpawner : MonoBehaviour
 
     [SerializeField] private KTBLogicScript logic;
     public float distancePlayerHand;
-    private Transform playerTransform;
     private GameObject newHand;
 
     void Start()
     {
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<KTBLogicScript>();
+
         // Angulo y primeras coords. aleatorios
         float spawnAngle = Random.Range(0, 2 * Mathf.PI);
         x = (Mathf.Cos(spawnAngle) * radio);
         y = Mathf.Sin(spawnAngle) * radio;
-        prev_x = 0f; prev_y = 1f;
+        prev_x = 0f; prev_y = -radio;
 
         // Hand no hará el 1r spawn en el hemisferio norte
         y = -Mathf.Abs(y);
 
-        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
-
         // Primera hand
         spawnHand(x, y);
-
-        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<KTBLogicScript>();
     }
     
     void Update()
@@ -51,7 +48,7 @@ public class HandSpawner : MonoBehaviour
                 // Fórmula de la distancia entre 2 puntos en el espacio
                 distance = Mathf.Sqrt(Mathf.Pow(x - prev_x, 2) + Mathf.Pow(y - prev_y, 2));
                 //Debug.Log(distance);
-                //Debug.Log("Nuevas coords:" + x + " / " + y);
+                //Debug.Log("Nuevas coords:" + x + " / " + y + " Distancia: " + distance);
             }
             while (distance < proximitySpawnFactor);
 
@@ -62,20 +59,23 @@ public class HandSpawner : MonoBehaviour
 
     private void spawnHand(float x, float y)
     {
+        float xOffset = 2.5f;
+        x += xOffset;
         Vector3 spawnPos = new Vector3(x, y, 0);
 
+        // Posición objetivo hacia donde apuntará el objeto
+        Vector3 targetPos = new Vector3(xOffset, 0, 0);
+
         // Vector de dirección hacia el centro (el origen)
-        Vector3 directionToCenter = -spawnPos.normalized;
+        //Vector3 directionToCenter = -spawnPos.normalized;
+
+        // Vector de dirección hacia la posición objetivo
+        Vector3 directionToTarget = (targetPos - spawnPos).normalized;
 
         // Calcular la rotación hacia el centro
-        Quaternion handRotation = Quaternion.LookRotation(Vector3.forward, directionToCenter);
+        Quaternion handRotation = Quaternion.LookRotation(Vector3.forward, directionToTarget);
 
         newHand = Instantiate(hand, spawnPos, handRotation, parent);
         //Debug.Log($"Spawned hand at x: {x}, y: {y}, rotation: {handRotation.eulerAngles}");
     }
-
-    //public float GetDistanceToPlayer()
-    //{
-    //    return Vector2.Distance(newHand.transform.position, playerTransform.position);
-    //}
 }

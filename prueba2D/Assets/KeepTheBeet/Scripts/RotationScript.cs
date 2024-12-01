@@ -6,23 +6,45 @@ public class RotationScript : MonoBehaviour
 {
     public float rotationSpeed = 100f;
     public bool clockwise = true;
-    public bool remiIsAlive;
+    private KTBLogicScript logic;
+
+    private bool firstMilestone;
+    private bool secondMilestone;
+    private float speedUpgrade = 0f;
+
+    void Start()
+    {
+        logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<KTBLogicScript>();
+    }
 
     void Update()
     {
-        if (remiIsAlive)
+        if (logic.remiIsAlive)
         {
             if (clockwise)
             {
-                transform.Rotate(new Vector3(0, 0, -rotationSpeed) * Time.deltaTime);
+                transform.Rotate(new Vector3(0, 0, -rotationSpeed - speedUpgrade) * Time.deltaTime);
                 transform.localScale = new Vector3(1, 1, 1);
             }
             else
             {
-                transform.Rotate(new Vector3(0, 0, rotationSpeed) * Time.deltaTime);
+                transform.Rotate(new Vector3(0, 0, rotationSpeed + speedUpgrade) * Time.deltaTime);
                 transform.localScale = new Vector3(-1, 1, 1);
             }
-        }
+        
 
+            if (logic.playerScore > 20) firstMilestone = true;
+            if (logic.playerScore > 40) secondMilestone = true;
+            if (firstMilestone)
+            {
+                firstMilestone = false;
+                speedUpgrade = 50f;
+            }
+            if (secondMilestone)
+            {
+                secondMilestone = false;
+                speedUpgrade = 100f;
+            }
+        }
     }
 }
