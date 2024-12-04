@@ -20,11 +20,15 @@ public class KTBLogicScript : MonoBehaviour
     private float spaceTimer = 0;
     private float holdSpaceTime = .5f;
     public bool holdingE;
+    Animator anim;
+
+    [SerializeField] private AudioClip[] deathSounds;
 
     void Start()
     {
         scoreText.text = playerScore.ToString();
         remiIsAlive = true;
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -39,6 +43,8 @@ public class KTBLogicScript : MonoBehaviour
             // Animacion + cooldown para gameOver
             missClick = true;
         }
+
+        if (!remiIsAlive && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E))) onRestart();
 
         eHolding();
     }
@@ -68,7 +74,9 @@ public class KTBLogicScript : MonoBehaviour
 
     public void gameOver()
     {
-        gameOverScreen.SetActive(true);
+        SoundFXManager.instance.PlayRandomSoundFXClip(deathSounds, transform, 1f);
+
+        if (gameOverScreen!=null) gameOverScreen.SetActive(true);
         remiIsAlive = false;
     }
 
@@ -82,7 +90,7 @@ public class KTBLogicScript : MonoBehaviour
         // Tecla espacio mantenida o no
         if (Input.GetKey(KeyCode.E) && remiIsAlive)
         {
-            if (Input.GetKeyDown(KeyCode.Space)) gameOver();
+            if (Input.GetKeyDown(KeyCode.Space)) gameOver(); //print("gameOver logic");
 
             if (spaceTimer < holdSpaceTime)
             {
@@ -94,7 +102,7 @@ public class KTBLogicScript : MonoBehaviour
                 holdingE = true;
             }
         }
-
+        //anim.SetBool(holdingE, true); y el false
         if (Input.GetKeyUp(KeyCode.E)) holdingE = false;
         if (holdingE) mecanicaCheck.SetActive(true);
         else mecanicaCheck.SetActive(false);

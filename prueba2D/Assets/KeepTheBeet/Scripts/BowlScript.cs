@@ -33,6 +33,7 @@ public class BowlScript : MonoBehaviour
         if (currLife == 0)
         {
             logic.gameOver();
+            //print("gameOver bowl");
             return;
         }
 

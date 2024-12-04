@@ -10,6 +10,8 @@ public class HandScript : MonoBehaviour
 
     [SerializeField] private float lowestRS = 100f;
     [SerializeField] private float highestRS = 250f;
+
+    [SerializeField] private AudioClip[] remiCaugthClip;
     
     Animator anim;
     //private float distancePlayerHand;
@@ -43,6 +45,8 @@ public class HandScript : MonoBehaviour
 
             logic.addScore();                                               // +1 a score en 'logic'
             anim.SetBool("remiCaught", true);                               // Animacion de remiCaught
+            SoundFXManager.instance.PlayRandomSoundFXClip(remiCaugthClip, transform, 1f); // Sonido de acierto
+
             rotation.rotationSpeed = Random.Range(lowestRS, highestRS);     // Velocidad de rotacion en 'rotation' random
             GetComponent<CircleCollider2D>().enabled = false;               // Se desactiva el collider de 'hand'
                 

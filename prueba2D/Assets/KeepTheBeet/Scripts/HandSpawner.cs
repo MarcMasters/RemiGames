@@ -47,8 +47,7 @@ public class HandSpawner : MonoBehaviour
                 y = Mathf.Sin(spawnAngle) * radio;
                 // Fórmula de la distancia entre 2 puntos en el espacio
                 distance = Mathf.Sqrt(Mathf.Pow(x - prev_x, 2) + Mathf.Pow(y - prev_y, 2));
-                //Debug.Log(distance);
-                //Debug.Log("Nuevas coords:" + x + " / " + y + " Distancia: " + distance);
+                Debug.Log("Nuevas coords:" + x + " / " + y + " Distancia: " + distance);
             }
             while (distance < proximitySpawnFactor);
 
@@ -76,6 +75,6 @@ public class HandSpawner : MonoBehaviour
         Quaternion handRotation = Quaternion.LookRotation(Vector3.forward, directionToTarget);
 
         newHand = Instantiate(hand, spawnPos, handRotation, parent);
-        //Debug.Log($"Spawned hand at x: {x}, y: {y}, rotation: {handRotation.eulerAngles}");
+        Debug.Log($"Spawned hand at x: {x}, y: {y}, rotation: {handRotation.eulerAngles}");
     }
 }

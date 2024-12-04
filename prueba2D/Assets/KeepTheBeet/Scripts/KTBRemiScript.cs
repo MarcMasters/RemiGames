@@ -30,9 +30,9 @@ public class KTBtRemiScript : MonoBehaviour
     {
         // Al salir del trigger ya no se puede pulsar espacio
         // y pierdes si no has acertado \ sumado 1 punto
-        if (other.CompareTag("Mano"))
+        if (other.CompareTag("Mano") && logic.remiIsAlive)
         {
-            //Debug.Log("trigger exit y bool false");
+            //Debug.Log("trigger exit");
             logic.canPressSpace = false;
             anim.SetBool("remiSpawning",true);
 
@@ -45,6 +45,7 @@ public class KTBtRemiScript : MonoBehaviour
             if (!logic.checkScoreChanges())
             {
                 logic.gameOver();
+                //print("gameOver remi");
             }
         }
     }
