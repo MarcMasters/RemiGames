@@ -26,7 +26,10 @@ public class HandScript : MonoBehaviour
 
     void Update()
     {
-        if (logic.missClick) anim.SetBool("missClick", true);
+        if (logic.missClick)
+        {
+            anim.SetBool("missClick", true);
+        }
 
         // Si la mano activa (en trigger) no es la de este script > return (no hace nada)
         if (logic.activeHand != this) return;

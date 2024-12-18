@@ -104,7 +104,7 @@ MonoBehaviour:
   remiCaugthClip:
   - {fileID: 8300000, guid: a3920f3d097a3794ab42b0e02baa6b48, type: 3}
   - {fileID: 8300000, guid: b8633d857d4c56f4aaafd7b8a465d954, type: 3}
-  - {fileID: 8300000, guid: 2b33ccc7681c69b489fae2ed90a0f479, type: 3}
+  - {fileID: 8300000, guid: b841a48b4c3051242a1c825df0af13e6, type: 3}
 --- !u!95 &6897156022997280139
 Animator:
   serializedVersion: 5

@@ -13,9 +13,12 @@ public class BowlScript : MonoBehaviour
 
     private KTBLogicScript logic;
 
+    Animator anim;
+
     void Start()
     {
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<KTBLogicScript>();
+        anim = GetComponent<Animator>();
     }
 
     void Update()
@@ -24,20 +27,12 @@ public class BowlScript : MonoBehaviour
         {
             image.fillAmount = currLife/maxLife;
             updateLife();
+            animateBowl();
         }
     }
 
     public void updateLife()
     {
-        // Si se acaba el tiempo, game over
-        if (currLife == 0)
-        {
-            logic.gameOver();
-            //print("gameOver bowl");
-            return;
-        }
-
-
         // Si aguantas E durante 0.25 seg, suma
         if (logic.holdingE)
         {
@@ -70,4 +65,27 @@ public class BowlScript : MonoBehaviour
             }
         }
     }
+
+    private void animateBowl()
+    {
+        if (currLife > maxLife * 2 / 3)
+        {
+            anim.SetInteger("bowl_phase", 0);
+        }
+        else if (currLife < maxLife * 2 / 3 && currLife > maxLife * 1 / 3)
+        {
+            anim.SetInteger("bowl_phase", 1);
+        }
+        else if (currLife < maxLife * 1 / 3 && currLife > maxLife * 0)
+        {
+            anim.SetInteger("bowl_phase", 2);
+        }
+        else if (currLife <= 0f)
+        {
+            anim.SetInteger("bowl_phase", 3);
+            logic.remiIsAlive = false;
+            return;
+        }
+    }
+    public void bowlGameOver() { logic.gameOver(); }
 }

@@ -9,7 +9,6 @@ public class KTBLogicScript : MonoBehaviour
     public int playerScore = 0;
     [SerializeField] private Text scoreText;
     [SerializeField] private GameObject gameOverScreen;
-    [SerializeField] private GameObject mecanicaCheck;
     private int prevScore = 0;
 
     public bool canPressSpace;
@@ -20,15 +19,16 @@ public class KTBLogicScript : MonoBehaviour
     private float spaceTimer = 0;
     private float holdSpaceTime = .5f;
     public bool holdingE;
-    Animator anim;
+    Animator animBarra;
 
     [SerializeField] private AudioClip[] deathSounds;
+    [SerializeField] private AudioClip[] handFailed;
 
     void Start()
     {
         scoreText.text = playerScore.ToString();
         remiIsAlive = true;
-        anim = GetComponent<Animator>();
+        animBarra = GameObject.FindGameObjectWithTag("Barra").GetComponent<Animator>();
     }
 
     void Update()
@@ -40,8 +40,8 @@ public class KTBLogicScript : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && !canPressSpace)
         {
-            // Animacion + cooldown para gameOver
             missClick = true;
+            SoundFXManager.instance.PlayRandomSoundFXClip(handFailed, transform, 1f);
         }
 
         if (!remiIsAlive && (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.E))) onRestart();
@@ -90,7 +90,9 @@ public class KTBLogicScript : MonoBehaviour
         // Tecla espacio mantenida o no
         if (Input.GetKey(KeyCode.E) && remiIsAlive)
         {
-            if (Input.GetKeyDown(KeyCode.Space)) gameOver(); //print("gameOver logic");
+            if (Input.GetKeyDown(KeyCode.Space)) gameOver();
+            animBarra.SetBool("ePressed",true);
+
 
             if (spaceTimer < holdSpaceTime)
             {
@@ -102,9 +104,10 @@ public class KTBLogicScript : MonoBehaviour
                 holdingE = true;
             }
         }
-        //anim.SetBool(holdingE, true); y el false
-        if (Input.GetKeyUp(KeyCode.E)) holdingE = false;
-        if (holdingE) mecanicaCheck.SetActive(true);
-        else mecanicaCheck.SetActive(false);
+        if (Input.GetKeyUp(KeyCode.E)) 
+        {
+            holdingE = false;
+            animBarra.SetBool("ePressed", false);
+        }
     }
 }

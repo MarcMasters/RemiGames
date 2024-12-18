@@ -10,6 +10,7 @@ TagManager:
   - Mano
   - Orbita
   - HandSpawner
+  - Barra
   layers:
   - Default
   - TransparentFX
