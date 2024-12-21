@@ -13,7 +13,6 @@ public class HandSpawner : MonoBehaviour
     private float prev_x, prev_y, x, y, spawnAngle;
 
     [SerializeField] private KTBLogicScript logic;
-    public float distancePlayerHand;
     private GameObject newHand;
 
     void Start()
@@ -51,12 +50,12 @@ public class HandSpawner : MonoBehaviour
             }
             while (distance < proximitySpawnFactor);
 
-            spawnHand(x, y);
+            spawnHand(x, y, distance);
             prev_x = x; prev_y = y;
         }
     }
 
-    private void spawnHand(float x, float y)
+    private void spawnHand(float x, float y, float distance = 0f)
     {
         float xOffset = 2.5f;
         x += xOffset;
@@ -75,6 +74,6 @@ public class HandSpawner : MonoBehaviour
         Quaternion handRotation = Quaternion.LookRotation(Vector3.forward, directionToTarget);
 
         newHand = Instantiate(hand, spawnPos, handRotation, parent);
-        Debug.Log($"Spawned hand at x: {x}, y: {y}, rotation: {handRotation.eulerAngles}");
+        Debug.Log($"Spawned hand at x: {x}, y: {y}, rotation: {handRotation.eulerAngles}, distance: {distance}");
     }
 }

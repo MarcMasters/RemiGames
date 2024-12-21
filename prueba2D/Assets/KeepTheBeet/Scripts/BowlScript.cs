@@ -36,7 +36,7 @@ public class BowlScript : MonoBehaviour
         // Si aguantas E durante 0.25 seg, suma
         if (logic.holdingE)
         {
-            if (timer2 < .25f)
+            if (timer2 < .15f)
             {
                 timer2 += Time.deltaTime;
             }
