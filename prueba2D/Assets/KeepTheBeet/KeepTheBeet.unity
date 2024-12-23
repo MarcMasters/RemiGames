@@ -468,6 +468,54 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &236898398
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 236898399}
+  - component: {fileID: 236898400}
+  m_Layer: 0
+  m_Name: CoinSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &236898399
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236898398}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1092429276}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &236898400
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 236898398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93369d8452cd9854f90c75d7267c027a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  coin: {fileID: 6063949334398568402, guid: 7bc6a53a8dbdc3548b3cfb3f9aabe2c5, type: 3}
+  parent: {fileID: 236898399}
+  radio: 4
+  coinCoolDown: 0.5
 --- !u!1 &302254707
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,7 +650,7 @@ Transform:
   m_GameObject: {fileID: 354590895}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -8.61, y: -1.09, z: 0}
+  m_LocalPosition: {x: -9.57, y: -1.09, z: 0}
   m_LocalScale: {x: 0.54038, y: 0.54038, z: 0.54038}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -866,7 +914,7 @@ Transform:
   m_GameObject: {fileID: 390337283}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -7.08, y: 3.58, z: 0}
+  m_LocalPosition: {x: -8.04, y: 3.58, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -982,7 +1030,7 @@ Transform:
   m_GameObject: {fileID: 593983937}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.5, y: 0, z: 0}
+  m_LocalPosition: {x: 3.5, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1077,7 +1125,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 548537476, guid: 9ed7f06d02f68d24395589868eacfc22, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1652,10 +1700,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hand: {fileID: 7583299257953821524, guid: 51d78472d3193f04584a49f85f76069f, type: 3}
-  parent: {fileID: 954462363}
-  radio: 4.5
+  handParent: {fileID: 954462363}
+  coin: {fileID: 6063949334398568402, guid: 7bc6a53a8dbdc3548b3cfb3f9aabe2c5, type: 3}
+  coinParent: {fileID: 954462363}
+  coinRadius: 4
+  radius: 4.5
   proximitySpawnFactor: 6
   logic: {fileID: 0}
+  xMapOffset: 3.5
 --- !u!1 &966619183
 GameObject:
   m_ObjectHideFlags: 0
@@ -1847,6 +1899,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 954462363}
+  - {fileID: 236898399}
   - {fileID: 1858079476}
   - {fileID: 96722060}
   - {fileID: 521754583}
@@ -2245,7 +2298,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.1188672, y: 1.1188672, z: 1.1188672}
+  m_LocalScale: {x: 1.1048813, y: 1.1188672, z: 1.1188672}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 593983938}
@@ -2614,7 +2667,7 @@ Transform:
   m_GameObject: {fileID: 1813627872}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8.63, y: -2.16, z: 0}
+  m_LocalPosition: {x: -9.59, y: -2.16, z: 0}
   m_LocalScale: {x: 1, y: 0.12891792, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

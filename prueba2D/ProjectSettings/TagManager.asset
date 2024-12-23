@@ -11,6 +11,7 @@ TagManager:
   - Orbita
   - HandSpawner
   - Barra
+  - Coin
   layers:
   - Default
   - TransparentFX

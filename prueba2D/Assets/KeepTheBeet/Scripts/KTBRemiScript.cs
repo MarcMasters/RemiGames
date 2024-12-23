@@ -34,7 +34,7 @@ public class KTBtRemiScript : MonoBehaviour
         {
             //Debug.Log("trigger exit");
             logic.canPressSpace = false;
-            anim.SetBool("remiSpawning",true);
+            anim.SetBool("remiSpawning", true);
 
             // Desvincular al salir del trigger
             if (logic.activeHand == other.GetComponent<HandScript>())

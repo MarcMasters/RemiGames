@@ -14,13 +14,11 @@ public class HandScript : MonoBehaviour
     [SerializeField] private AudioClip[] remiCaugthClip;
     
     Animator anim;
-    //private float distancePlayerHand;
 
     void Start()
     {
         rotation = GameObject.FindGameObjectWithTag("Orbita").GetComponent<RotationScript>();
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<KTBLogicScript>();
-        //spawner = GameObject.FindGameObjectWithTag("HandSpawner").GetComponent<HandSpawner>();
         anim = GetComponent<Animator>();
     }
 
