@@ -8,13 +8,10 @@ public class HandSpawner : MonoBehaviour
     [SerializeField] private GameObject hand;
     [SerializeField] private Transform handParent;
 
-    [SerializeField] private GameObject coin;
-    [SerializeField] private Transform coinParent;
-    [SerializeField] private float coinRadius = 4f;
-
     [SerializeField] private float radius = 4.5f;
     [SerializeField] private float proximitySpawnFactor;
-    private float prev_x, prev_y, x, y, spawnAngle;
+    private float prev_x, prev_y, x, y;
+    public float spawnAngle;
 
     [SerializeField] private KTBLogicScript logic;
     private GameObject newHand;
@@ -42,6 +39,7 @@ public class HandSpawner : MonoBehaviour
         if (logic.checkScoreChanges())
         {
             float distance;
+            prev_x = x; prev_y = y;
             // Comprueba si el las nuevas coordenadas son demasiado cercanas a las inmediatamente anteriores
             do
             {
@@ -56,10 +54,6 @@ public class HandSpawner : MonoBehaviour
             while (distance < proximitySpawnFactor);
 
             spawnHand(x, y, distance);
-            prev_x = x; prev_y = y;
-
-            // Se genera una moneda en la mano anterior (donde se ha cogido una remolacha)
-            spawnCoin();
         }
     }
 
@@ -70,9 +64,6 @@ public class HandSpawner : MonoBehaviour
         // Posición objetivo hacia donde apuntará el objeto
         Vector3 targetPos = new Vector3(xMapOffset, 0, 0);
 
-        // Vector de dirección hacia el centro (el origen)
-        //Vector3 directionToCenter = -spawnPos.normalized;
-
         // Vector de dirección hacia la posición objetivo
         Vector3 directionToTarget = (targetPos - spawnPos).normalized;
 
@@ -80,14 +71,14 @@ public class HandSpawner : MonoBehaviour
         Quaternion handRotation = Quaternion.LookRotation(Vector3.forward, directionToTarget);
 
         newHand = Instantiate(hand, spawnPos, handRotation, handParent);
-        Debug.Log($"Spawned hand at x: {x}, y: {y}, rotation: {handRotation.eulerAngles}, distance: {distance}");
+        Debug.Log($"Spawned hand at x: {x}, y: {y}, rotation: {handRotation.eulerAngles}, distance: {distance}, angle: {spawnAngle * 180 / Mathf.PI}");
     }
 
-    private void spawnCoin()
-    {
-        float coin_x = (Mathf.Cos(spawnAngle) * coinRadius) + xMapOffset;
-        float coin_y = Mathf.Sin(spawnAngle) * coinRadius;
-        Vector3 spawnPos = new Vector3(coin_x, coin_y, 0);
-        Instantiate(coin, spawnPos, Quaternion.identity, coinParent);
-    }
+    //public void spawnCoin(float coinSpawnAngle)
+    //{
+    //    float coin_x = (Mathf.Cos(coinSpawnAngle) * coinRadius) + xMapOffset;
+    //    float coin_y = Mathf.Sin(coinSpawnAngle) * coinRadius;
+    //    Vector3 spawnPos = new Vector3(coin_x, coin_y, 0);
+    //    Instantiate(coin, spawnPos, Quaternion.identity, coinParent);
+    //}
 }

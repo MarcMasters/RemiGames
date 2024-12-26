@@ -133,3 +133,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1ec758cfea3df704e858e33f008eb96e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  coinCollider: {fileID: -4703508199055445805}
+  noclipCD: 0.75
