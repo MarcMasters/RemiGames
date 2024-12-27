@@ -12,6 +12,7 @@ TagManager:
   - HandSpawner
   - Barra
   - Coin
+  - Bowl
   layers:
   - Default
   - TransparentFX

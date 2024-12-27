@@ -6,29 +6,23 @@ public class HandScript : MonoBehaviour
 {
     private RotationScript rotation;
     private KTBLogicScript logic;
-    private HandSpawner spawner;
+    private CoinManager coin;
+    private BowlScript bowlScript;
 
     [SerializeField] private float lowestRS = 100f;
     [SerializeField] private float highestRS = 250f;
 
     [SerializeField] private AudioClip[] remiCaugthClip;
-    
     Animator anim;
-
-    [SerializeField] private float xMapOffset = 3.5f;
-    [SerializeField] private GameObject coin;
-    //[SerializeField] private Transform coinParent;
-    [SerializeField] private float coinRadius = 4f;
-    private float coinSpawnAngle;
+    
 
     void Start()
     {
         rotation = GameObject.FindGameObjectWithTag("Orbita").GetComponent<RotationScript>();
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<KTBLogicScript>();
-        spawner = GameObject.FindGameObjectWithTag("HandSpawner").GetComponent<HandSpawner>();
+        coin = GameObject.FindGameObjectWithTag("Logic").GetComponent<CoinManager>();
+        bowlScript = GameObject.FindGameObjectWithTag("Bowl").GetComponent<BowlScript>();
         anim = GetComponent<Animator>();
-
-        //coinSpawnAngle = spawner.spawnAngle;
     }
 
     void Update()
@@ -62,26 +56,17 @@ public class HandScript : MonoBehaviour
                 
             Destroy(gameObject, 0.3f);
         }
-
-        coinSpawnAngle = spawner.spawnAngle;
     }
 
     void OnDestroy()
     {
         if (logic.remiIsAlive)
         {
-            spawnCoin(coinSpawnAngle);
-            //coinSpawnAngle = spawner.spawnAngle;
-            print("Ojeto destruido");
+            //print(bowlScript.hardSwingPhase);
+            // Spawn coin al destruirse mano
+            coin.spawnCoin(gameObject.transform.position.x, gameObject.transform.position.y);
+            // Spawn superCoin al destruirse (probabilidad) si no estás en la fase de Swing2 del bol
+            if (!bowlScript.hardSwingPhase) { coin.spawnSuperCoin(); }
         }
-    }
-
-    public void spawnCoin(float spawnAngle)
-    {
-        print("Angulo moneda: "+coinSpawnAngle);
-        float coin_x = (Mathf.Cos(spawnAngle) * coinRadius) + xMapOffset;
-        float coin_y = Mathf.Sin(spawnAngle) * coinRadius;
-        Vector3 spawnPos = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y, 0);
-        Instantiate(coin, spawnPos, Quaternion.identity);
     }
 }

@@ -73,12 +73,4 @@ public class HandSpawner : MonoBehaviour
         newHand = Instantiate(hand, spawnPos, handRotation, handParent);
         Debug.Log($"Spawned hand at x: {x}, y: {y}, rotation: {handRotation.eulerAngles}, distance: {distance}, angle: {spawnAngle * 180 / Mathf.PI}");
     }
-
-    //public void spawnCoin(float coinSpawnAngle)
-    //{
-    //    float coin_x = (Mathf.Cos(coinSpawnAngle) * coinRadius) + xMapOffset;
-    //    float coin_y = Mathf.Sin(coinSpawnAngle) * coinRadius;
-    //    Vector3 spawnPos = new Vector3(coin_x, coin_y, 0);
-    //    Instantiate(coin, spawnPos, Quaternion.identity, coinParent);
-    //}
 }

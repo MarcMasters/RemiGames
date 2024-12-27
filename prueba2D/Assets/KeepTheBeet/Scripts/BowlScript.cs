@@ -12,12 +12,15 @@ public class BowlScript : MonoBehaviour
     private float timer2 = 0f;
 
     private KTBLogicScript logic;
-
     Animator anim;
+
+    private CoinManager coin;
+    public bool hardSwingPhase = false;
 
     void Start()
     {
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<KTBLogicScript>();
+        coin = GameObject.FindGameObjectWithTag("Logic").GetComponent<CoinManager>();
         anim = GetComponent<Animator>();
     }
 
@@ -33,7 +36,7 @@ public class BowlScript : MonoBehaviour
 
     public void updateLife()
     {
-        // Si aguantas E durante 0.25 seg, suma
+        // Si aguantas E durante 0.15 seg, suma
         if (logic.holdingE)
         {
             if (timer2 < .15f)
@@ -75,10 +78,12 @@ public class BowlScript : MonoBehaviour
         else if (currLife < maxLife * 2 / 3 && currLife > maxLife * 1 / 3)
         {
             anim.SetInteger("bowl_phase", 1);
+            hardSwingPhase = false;
         }
         else if (currLife < maxLife * 1 / 3 && currLife > maxLife * 0)
         {
             anim.SetInteger("bowl_phase", 2);
+            hardSwingPhase = true;
         }
         else if (currLife <= 0f)
         {

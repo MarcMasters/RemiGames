@@ -11,6 +11,11 @@ public class KTBLogicScript : MonoBehaviour
     [SerializeField] private GameObject gameOverScreen;
     private int prevScore = 0;
 
+    public int currentPlayerCash = 0;
+    public int totalPlayerCash;
+    [SerializeField] private Text cashText;
+    [SerializeField] private Text totalCashText;
+
     public bool canPressSpace;
     public HandScript activeHand;
     public bool missClick = false;
@@ -24,11 +29,15 @@ public class KTBLogicScript : MonoBehaviour
     [SerializeField] private AudioClip[] deathSounds;
     [SerializeField] private AudioClip[] handFailed;
 
+
     void Start()
     {
         scoreText.text = playerScore.ToString();
         remiIsAlive = true;
         animBarra = GameObject.FindGameObjectWithTag("Barra").GetComponent<Animator>();
+
+        totalPlayerCash = PlayerPrefs.GetInt("Dinero");
+        totalCashText.text = "TOTAL: " + totalPlayerCash.ToString();
     }
 
     void Update()
@@ -75,6 +84,7 @@ public class KTBLogicScript : MonoBehaviour
     public void gameOver()
     {
         SoundFXManager.instance.PlayRandomSoundFXClip(deathSounds, transform, 1f);
+        addCashToTotal();
 
         if (gameOverScreen!=null) gameOverScreen.SetActive(true);
         remiIsAlive = false;
@@ -109,5 +119,19 @@ public class KTBLogicScript : MonoBehaviour
             holdingE = false;
             animBarra.SetBool("ePressed", false);
         }
+    }
+
+    public void addCashToCurrent(int cash)
+    {
+        currentPlayerCash += cash;
+        cashText.text = currentPlayerCash.ToString();
+    }
+
+    private void addCashToTotal()
+    {
+        totalPlayerCash += currentPlayerCash;
+        PlayerPrefs.SetInt("Dinero", totalPlayerCash);
+
+        totalCashText.text = "TOTAL: "+ totalPlayerCash.ToString();
     }
 }
