@@ -12,6 +12,12 @@ public class TitleScreenScript : MonoBehaviour
 
     public void onExitGame()
     {
-        SceneManager.LoadScene("TitleScreen");
+        Application.Quit();
+        //SceneManager.LoadScene("TitleScreen");
+    }
+
+    public void onShop()
+    {
+        SceneManager.LoadScene("KTBShop");
     }
 }

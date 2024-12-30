@@ -29,8 +29,8 @@ Transform:
   m_GameObject: {fileID: 7583299257953821524}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: -0.037123, z: 0}
+  m_LocalScale: {x: 0.93813, y: 0.93813, z: 0.93813}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -105,10 +105,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a3920f3d097a3794ab42b0e02baa6b48, type: 3}
   - {fileID: 8300000, guid: b8633d857d4c56f4aaafd7b8a465d954, type: 3}
   - {fileID: 8300000, guid: b841a48b4c3051242a1c825df0af13e6, type: 3}
-  xMapOffset: 3.5
-  coin: {fileID: 6063949334398568402, guid: 7bc6a53a8dbdc3548b3cfb3f9aabe2c5, type: 3}
-  coinParent: {fileID: 0}
-  coinRadius: 4
 --- !u!95 &6897156022997280139
 Animator:
   serializedVersion: 5

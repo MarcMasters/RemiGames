@@ -14,13 +14,12 @@ public class BowlScript : MonoBehaviour
     private KTBLogicScript logic;
     Animator anim;
 
-    private CoinManager coin;
     public bool hardSwingPhase = false;
+    [SerializeField] private AudioClip[] barraSound;
 
     void Start()
     {
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<KTBLogicScript>();
-        coin = GameObject.FindGameObjectWithTag("Logic").GetComponent<CoinManager>();
         anim = GetComponent<Animator>();
     }
 
@@ -39,6 +38,7 @@ public class BowlScript : MonoBehaviour
         // Si aguantas E durante 0.15 seg, suma
         if (logic.holdingE)
         {
+            SoundFXManager.instance.PlayRandomSoundFXClip(barraSound,transform,1);
             if (timer2 < .15f)
             {
                 timer2 += Time.deltaTime;

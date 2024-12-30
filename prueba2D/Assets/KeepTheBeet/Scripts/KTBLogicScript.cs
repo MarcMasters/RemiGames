@@ -38,6 +38,8 @@ public class KTBLogicScript : MonoBehaviour
 
         totalPlayerCash = PlayerPrefs.GetInt("Dinero");
         totalCashText.text = "TOTAL: " + totalPlayerCash.ToString();
+
+        //PlayerPrefs.SetInt("Dinero",0);
     }
 
     void Update()
@@ -129,7 +131,10 @@ public class KTBLogicScript : MonoBehaviour
 
     private void addCashToTotal()
     {
+        totalPlayerCash = PlayerPrefs.GetInt("Dinero");
+        print("Almacenado: "+totalPlayerCash);
         totalPlayerCash += currentPlayerCash;
+        print("Añadido: " + currentPlayerCash);
         PlayerPrefs.SetInt("Dinero", totalPlayerCash);
 
         totalCashText.text = "TOTAL: "+ totalPlayerCash.ToString();

@@ -33,7 +33,7 @@ public class CoinScript : MonoBehaviour
         }
 
         // SuperCoin
-        if (bowlScript.hardSwingPhase && this.transform.position.x < 0)
+        if (bowlScript.hardSwingPhase && this.transform.position.x < -2)
         {
             print("superCoin añadida");
             SoundFXManager.instance.PlayRandomSoundFXClip(coinSounds, transform, 1f);
