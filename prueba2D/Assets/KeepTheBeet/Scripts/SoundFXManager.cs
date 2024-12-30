@@ -7,7 +7,7 @@ public class SoundFXManager : MonoBehaviour
     public static SoundFXManager instance;
 
     // Crear AudioSource sin "PlayOnAwake" y meterlo en prefabs
-    [SerializeField] private AudioSource soundFXObject;
+    [SerializeField] public AudioSource soundFXObject;
 
     void Awake()
     {

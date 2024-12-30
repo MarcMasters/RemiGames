@@ -15,7 +15,7 @@ public class BowlScript : MonoBehaviour
     Animator anim;
 
     public bool hardSwingPhase = false;
-    [SerializeField] private AudioClip[] barraSound;
+    //[SerializeField] private AudioClip[] barraSound;
 
     void Start()
     {
@@ -38,7 +38,7 @@ public class BowlScript : MonoBehaviour
         // Si aguantas E durante 0.15 seg, suma
         if (logic.holdingE)
         {
-            SoundFXManager.instance.PlayRandomSoundFXClip(barraSound,transform,1);
+            //SoundFXManager.instance.PlayRandomSoundFXClip(barraSound,transform,1);
             if (timer2 < .15f)
             {
                 timer2 += Time.deltaTime;

@@ -3,17 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class KTBLogicScript : MonoBehaviour
 {
     public int playerScore = 0;
-    [SerializeField] private Text scoreText;
+    [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private GameObject gameOverScreen;
     private int prevScore = 0;
 
     public int currentPlayerCash = 0;
     public int totalPlayerCash;
-    [SerializeField] private Text cashText;
+    [SerializeField] private TextMeshProUGUI cashText;
     [SerializeField] private Text totalCashText;
 
     public bool canPressSpace;

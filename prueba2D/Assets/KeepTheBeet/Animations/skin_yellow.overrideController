@@ -1,0 +1,15 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: skin_yellow
+  m_Controller: {fileID: 9100000, guid: c87ce4c3ace30764e9d21ebe92adc81e, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: c2676dd8ed9dbc54cabd9cad633a27e9, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 6a1bd24b9b0deb1459c44b0c0aec714e, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: bebb5f175a8ab9c48ae261c5f60c8435, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: a1950174998a681498a96c00ce5cc08d, type: 2}

@@ -7,11 +7,17 @@ public class KTBtRemiScript : MonoBehaviour
     private KTBLogicScript logic;
     private HandScript handScript;
     Animator anim;
+    [SerializeField] private AnimatorOverrideController[] chosenSkins;
+    private RuntimeAnimatorController skin_base;
     
     private void Start()
     {
         logic = GameObject.FindGameObjectWithTag("Logic").GetComponent<KTBLogicScript>();
         anim = GetComponent<Animator>();
+
+        // Selección de skin
+        skin_base = anim.runtimeAnimatorController;
+        randomSkinChange();
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -34,6 +40,7 @@ public class KTBtRemiScript : MonoBehaviour
         {
             //Debug.Log("trigger exit");
             logic.canPressSpace = false;
+            randomSkinChange();
             anim.SetBool("remiSpawning", true);
 
             // Desvincular al salir del trigger
@@ -53,5 +60,26 @@ public class KTBtRemiScript : MonoBehaviour
     public void resetBool()
     {
         anim.SetBool("remiSpawning", false);
+    }
+
+    void randomSkinChange()
+    {
+        int skinIndex = Random.Range(0, chosenSkins.Length);
+        switch (skinIndex)
+        {
+            case 0:
+                anim.runtimeAnimatorController = chosenSkins[0] as RuntimeAnimatorController;
+                break;
+            case 1:
+                anim.runtimeAnimatorController = chosenSkins[1] as RuntimeAnimatorController;
+                break;
+            case 2:
+                anim.runtimeAnimatorController = chosenSkins[2] as RuntimeAnimatorController;
+                break;
+            case 3:
+                anim.runtimeAnimatorController = chosenSkins[3] as RuntimeAnimatorController;
+                break;
+        }
+        
     }
 }
