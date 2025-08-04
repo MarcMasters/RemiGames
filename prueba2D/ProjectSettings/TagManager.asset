@@ -13,6 +13,9 @@ TagManager:
   - Barra
   - Coin
   - Bowl
+  - GO_text_bowl
+  - GO_text_hand
+  - GO_text_hb
   layers:
   - Default
   - TransparentFX

@@ -5,6 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class TitleScreenScript : MonoBehaviour
 {
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space)) onPlay();
+    }
     public void onPlay()
     {
         SceneManager.LoadScene("KeepTheBeet");
@@ -13,7 +17,6 @@ public class TitleScreenScript : MonoBehaviour
     public void onExitGame()
     {
         Application.Quit();
-        //SceneManager.LoadScene("TitleScreen");
     }
 
     public void onShop()

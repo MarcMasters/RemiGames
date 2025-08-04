@@ -30,6 +30,9 @@ public class KTBLogicScript : MonoBehaviour
     [SerializeField] private AudioClip[] deathSounds;
     [SerializeField] private AudioClip[] handFailed;
 
+    //[SerializeField] private Image GO_text_hand;
+    [SerializeField] private GameObject[] deathMessages;
+
 
     void Start()
     {
@@ -84,13 +87,31 @@ public class KTBLogicScript : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
-    public void gameOver()
+    public void gameOver(int deathIndex)
     {
         SoundFXManager.instance.PlayRandomSoundFXClip(deathSounds, transform, 1f);
         addCashToTotal();
 
         if (gameOverScreen!=null) gameOverScreen.SetActive(true);
         remiIsAlive = false;
+
+        // Mensajes de muerte
+        switch (deathIndex)
+        {
+            case 0:
+                print("muerte 0");
+                //GO_text_hand.enabled = true;
+                deathMessages[0].SetActive(true);
+                break;
+            case 1:
+                print("muerte 1");
+                deathMessages[1].SetActive(true);
+                break;
+            case 2:
+                print("muerte 2");
+                deathMessages[2].SetActive(true);
+                break;
+        }
     }
 
     public void onExit()
@@ -103,7 +124,7 @@ public class KTBLogicScript : MonoBehaviour
         // Tecla espacio mantenida o no
         if (Input.GetKey(KeyCode.E) && remiIsAlive)
         {
-            if (Input.GetKeyDown(KeyCode.Space)) gameOver();
+            if (Input.GetKeyDown(KeyCode.Space)) { gameOver(2); }
             animBarra.SetBool("ePressed",true);
 
 

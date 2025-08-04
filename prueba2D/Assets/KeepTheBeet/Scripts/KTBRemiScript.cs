@@ -49,9 +49,10 @@ public class KTBtRemiScript : MonoBehaviour
                 logic.activeHand = null;
             }
 
+            // Fallaste la mano
             if (!logic.checkScoreChanges())
             {
-                logic.gameOver();
+                logic.gameOver(0);
                 //print("gameOver remi");
             }
         }

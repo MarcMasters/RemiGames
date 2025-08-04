@@ -5,16 +5,16 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/OtherRemiGames/Scenes/TitleScreen.unity
     guid: 1618217388d815b4a9fe6aaa08c5ec03
-  - enabled: 1
+  - enabled: 0
     path: Assets/OtherRemiGames/Scenes/RemiRun1.unity
     guid: 2cda990e2423bbf4892e6590ba056729
-  - enabled: 1
+  - enabled: 0
     path: Assets/OtherRemiGames/Scenes/DinoGame.unity
     guid: fc2026d2097f73945a034b41ca78262e
-  - enabled: 1
+  - enabled: 0
     path: Assets/OtherRemiGames/Scenes/FlappyRemi.unity
     guid: f8e2ef376a66fa54e896e353e44986f7
   - enabled: 1

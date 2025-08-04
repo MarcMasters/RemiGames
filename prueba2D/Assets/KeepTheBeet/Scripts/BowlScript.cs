@@ -92,5 +92,5 @@ public class BowlScript : MonoBehaviour
             return;
         }
     }
-    public void bowlGameOver() { logic.gameOver(); }
+    public void bowlGameOver() { logic.gameOver(1); }
 }

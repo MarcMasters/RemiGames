@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class RotationScript : MonoBehaviour
 {
-    public float rotationSpeed = 100f;
+    public float rotationSpeed = 75f;
     public bool clockwise = true;
     private KTBLogicScript logic;
 
@@ -38,12 +38,12 @@ public class RotationScript : MonoBehaviour
             if (firstMilestone)
             {
                 firstMilestone = false;
-                speedUpgrade = 50f;
+                speedUpgrade = 25f;
             }
             if (secondMilestone)
             {
                 secondMilestone = false;
-                speedUpgrade = 100f;
+                speedUpgrade = 50f;
             }
         }
     }
